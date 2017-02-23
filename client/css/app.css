@@ -1,0 +1,259 @@
+html, body {
+    height: 100%;
+    background: url('../images/paper.jpg') center;
+}
+
+.image-background {
+    background: url('../images/imagen_puerto.jpg') no-repeat fixed center;
+    background-size: cover;
+}
+
+.logo-image {
+    margin-top: 50px;
+    width:540px; /* you can use % */
+    height: auto;
+
+}
+
+.top-gap {
+    margin-top: 20px;
+}
+
+.text-white {
+    color: white;
+    font-size: 20px;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.fill {
+    min-height: 100%;
+    height: 100%;
+}
+
+.wrapper {
+    min-height:100%;
+    position:relative;
+    padding-bottom: 80px;
+}
+
+.footer {
+    width:100%;
+    height: 5px !important;
+    left: 0;
+    margin: -80px auto 0;
+    text-align: right;
+}
+
+.footer hr {
+    width: 100%;
+}
+
+/*.image-background {
+    background: url('../images/puerto_blur.jpg') no-repeat fixed center;
+    background-size: cover;
+}*/
+
+.vertical-center {
+
+    height: 60vh !important; /* You might also want to use
+                        'height' property instead.
+
+                        Note that for percentage values of
+                        'height' or 'min-height' properties,
+                        the 'height' of the parent element
+                        should be specified explicitly.
+
+                        In this case the parent of '.vertical-center'
+                        is the <body> element */
+
+    /* Make it a flex container */
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    /* Align the bootstrap's container vertically */
+    -webkit-box-align : center;
+    -webkit-align-items : center;
+    -moz-box-align : center;
+    -ms-flex-align : center;
+    align-items : center;
+
+    /* In legacy web browsers such as Firefox 9
+       we need to specify the width of the flex container */
+    /*width: 100%;*/
+
+    /* Also 'margin: 0 auto' doesn't have any effect on flex items in such web browsers
+       hence the bootstrap's container won't be aligned to the center anymore.
+
+       Therefore, we should use the following declarations to get it centered again */
+    -webkit-box-pack : center;
+    -moz-box-pack : center;
+    -ms-flex-pack : center;
+    -webkit-justify-content : center;
+    justify-content : center;
+}
+
+
+.inline-input {
+    margin-left: auto !important;
+}
+
+.half-screen {
+    min-height: 41vh;
+    max-height: 41vh;
+    overflow: hidden;
+}
+
+.full-screen {
+    min-height: 86vh;
+    max-height: 86vh;
+    overflow: hidden;
+}
+
+
+.notification-card {
+    /*flex-direction: column;*/
+    border: 1px solid #C8C8C8;
+    /*border-bottom: 1px solid;*/
+    height: auto;
+    /* 1 */
+    margin-left: 15px;
+    margin-top: 20px;
+    width: auto;
+
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+    -moz-box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+    -o-box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+}
+
+.notification-container:first-child .notification-card{
+    margin-top: -5px !important;
+}
+
+.notification-container {
+    -webkit-animation: slideInLeft 1s;
+    animation: slideInLeft 1s
+}
+
+.notification-container.ng-enter-stagger {
+    /* 200ms will be applied between each sucessive enter operation */
+    -webkit-animation-delay:0.2s;
+    animation-delay:0.2s;
+
+    /*this is here to avoid accidental CSS inheritance */
+    -webkit-animation-duration:0s;
+    animation-duration:0s;
+}
+
+.notification-card .notification-image {
+    left: inherit;
+    top: inherit;
+    position: relative;
+}
+
+.notification-card .notification-subtitle {
+    margin-top: -8px;
+    font-size: 12px;
+    color: rgba(142, 146, 140, 1);
+}
+
+.notification-card .notification-alert {
+    left: -15px;
+    top: 10px;
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(255, 74, 77, 1);
+    line-height: 2em;
+    text-align: center;
+    color: #E8E8E8;
+
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+    -moz-box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+    -o-box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+}
+
+.notification-card .notification-warning {
+    left: -15px;
+    top: 10px;
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(255, 197, 86);
+    line-height: 2em;
+    text-align: center;
+    color: #E8E8E8;
+
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+    -moz-box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+    -o-box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+}
+
+.notification-card .notification-info {
+    left: -15px;
+    top: 10px;
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(106, 185, 255);
+    line-height: 2em;
+    text-align: center;
+    color: #E8E8E8;
+
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+    -moz-box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+    -o-box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
+}
+
+.notification-card .notification-card-title {
+    /*flex: 1 1 auto;*/
+    padding-left: 30px;
+    padding-top: 1px;
+    width: auto;
+}
+
+.notification-card .notification-card-title .notification-text-title{
+    /*flex: 1 1 auto;*/
+    font-weight: 700;
+    font-size: 15px;
+    margin-top: -10px;
+    width: auto;
+}
+
+.notification-card .notification-card-text {
+    /*flex: 1 1 auto;*/
+    padding-left: 30px;
+    font-size: 14px;
+    width: auto;
+    word-wrap: break-word;
+}
+
+@media (min-width:768px) { /* don't break navbar on small screen */
+    .navbar-right {
+        text-align: right !important;
+    }
+
+    /*.navbar-clock {
+        width: 60%;
+    }*/
+
+    .navbar-center {
+        width: 100%;
+        text-align: center;
+    }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="sistemaAlertas">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <title>Pto. Bs. As. - Monitoreo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- build:css -->
+    <link rel="stylesheet" href="css/bootstrap.lumen.css">
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/ng-tags-input.css">
+    <!-- endbuild -->
+    <!-- build:bower -->
+    <!-- BOWER COMPONENTS -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-socket-io/socket.js"></script>
+    <script src="bower_components/ng-tags-input/ng-tags-input.js"></script>
+    <!-- endbuild -->
+    <!-- build:app -->
+    <!-- APP SCRIPT -->
+    <script src="app.js"></script>
+    <!-- CLASSES -->
+    <script src="class/sockets.class.js"></script>
+    <script src="class/outgoing.class.js"></script>
+    <script src="class/incoming.class.js"></script>
+    <script src="class/notification.class.js"></script>
+    <script src="class/notificationRoom.class.js"></script>
+    <!-- CONTROLLERS -->
+    <script src="notifications/notifications.controller.js"></script>
+    <script src="config/config.controller.js"></script>
+    <script src="config/outgoings/outgoing.controller.js"></script>
+    <script src="config/incomings/incoming.controller.js"></script>
+    <script src="navigation/navigation.controller.js"></script>
+    <script src="login/login.controller.js"></script>
+    <!-- FACTORIES -->
+    <script src="config/config.factory.js"></script>
+    <!-- DIRECTIVES -->
+    <script src="navigation/navigation.directive.js"></script>
+    <script src="notifications/panelNotification.directive.js"></script>
+    <!-- SERVICES -->
+    <script src="service/notification.service.js"></script>
+    <script src="service/clock.service.js"></script>
+    <script src="service/dialogs/dialogs.js"></script>
+    <script src="service/validator.service.js"></script>
+    <script src="service/session.service.js"></script>
+    <script src="service/storage.service.js"></script>
+    <script src="service/data.service.js"></script>
+    <script src="service/apiEndpoint.constant.development.js"></script>
+    <!-- FILTERS -->
+
+    <!-- endbuild -->
+    <!-- build:socket -->
+    <!-- OTHER LIBRARIES -->
+    <script src="lib/socket.io-1.4.5.js"></script>
+    <!-- endbuild -->
+</head>
+<!--<body class="container-fluid image-background">-->
+<body class="container-fluid" ng-class="loginScreen ? 'image-background' : ''">
+
+<navigation-bar ng-hide="loginScreen"></navigation-bar>
+
+<div class="row wrapper">
+    <div ui-view></div>
+</div>
+
+<footer class="container-fluid footer" ng-hide="loginScreen">
+    <hr>
+    <span class="hidden-xs">Administración General de Puertos S.E. - Departamento de desarrollo <!--<img src="images/logo-puerto-chico.png" height="45">--></span>
+    <span class="visible-xs">AGP S.E. - Depto. de desarrollo <!--<img src="images/logo-puerto-chico.png">--></span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+    "serverPort": 8073,
+    "email": {
+        "user":    "",
+        "password": "",
+        "host":    "10.10.0.176",
+        "port": "25",
+        "domain": "",
+        "from": "Administración General de Puertos <noreply@puertobuenosaires.gob.ar>",
+        "ssl":     false,
+        "status": true,
+        "throughBcc": true
+    },
+    "log": {
+        "path": "log/",
+        "filename": "nohup.out",
+        "toConsole": true,
+        "toFile": false
+    },
+    "mongo": {
+        "url": "mongodb://10.10.0.223:27017/notifica"
+    },
+    "mongo_url_log": "mongodb://10.1.0.60.27017:27017/logging",
+    "mongo_opts_log": {
+        "user": "admin",
+        "pass": "Pt trend 54",
+        "auth": {"authdb": "admin"}
+    }
+}

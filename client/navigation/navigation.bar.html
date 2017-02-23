@@ -1,0 +1,54 @@
+<nav class="navbar navbar-default navbar-fixed-top" ng-init="vmNavigation.isCollapsed = true">
+    <div class="container-fluid">
+        <div class="navbar-header navbar-left" uib-dropdown>
+            <button type="button" class="navbar-toggle collapsed" data-target="#user" aria-expanded="false" ng-click="vmNavigation.isCollapsed = !vmNavigation.isCollapsed">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href class="navbar-brand" ui-sref="notifications"><!--<img src="images/logo-libredeuda-chico.PNG" height="30">-->Monitoreo</a>
+        </div>
+
+        <!--<div class="collapse navbar-collapse" id="register" aria-expanded="false" uib-collapse="isCollapsed" ng-if="!session.isAuthenticated()">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="navbar-btn"  ui-sref="register">
+                    <a href><span class="glyphicon glyphicon-user"></span> Solicitar usuario</a>
+                </li>
+            </ul>
+        </div>-->
+
+        <div class="collapse navbar-collapse" id="user" aria-expanded="false" uib-collapse="vmNavigation.isCollapsed">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="nav"><a ui-sref="notifications" ng-click="vmNavigation.isCollapsed = !vmNavigation.isCollapsed">Avisos <span class="badge">{{ vmNavigation.notifications.infoCount }}</span></a></li>
+                <li class="nav"><a ui-sref="notifications" ng-click="vmNavigation.isCollapsed = !vmNavigation.isCollapsed">Alertas <span class="badge">{{ vmNavigation.notifications.warningCount }}</span></a></li>
+                <li class="nav"><a ui-sref="notifications" ng-click="vmNavigation.isCollapsed = !vmNavigation.isCollapsed">Alarmas <span class="badge">{{ vmNavigation.notifications.alertCount }}</span></a></li>
+                <!--<li class="dropdown open" uib-dropdown>
+                    <a href="#" class="dropdown-toggle"  uib-dropdown-toggle data-toggle="dropdown" role="button" aria-expanded="true"><span uib-dropdown-toggle class="glyphicon glyphicon-user"></span> {{ session.getName() }} <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu" uib-dropdown-menu>
+                        <li ng-click="logOut()"><a href ><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+                    </ul>
+                </li>-->
+            </ul>
+            <ul class="nav navbar-nav col-lg-6 hidden-sm hidden-xs">
+                <li class="nav navbar-center" ng-hide="vmNavigation.notifications.lastControl == null"><a href><span class="{{ vmNavigation.notifications.lastControl.notificationTextStyle }}">Ultimo control: {{ vmNavigation.notifications.lastControl.name }} - {{ vmNavigation.notifications.lastControl.fecha | date: 'dd/MM/yyyy HH:mm:ss' }}</span></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav navbar-clock hidden-sm hidden-xs"><a href><strong>{{ vmNavigation.timer.clock | date: 'dd/MM/yyyy HH:mm:ss'}}</strong></a></li>
+                <li ng-show="vmNavigation.session.isAdmin" class="nav" uib-dropdown>
+                    <a href ng-hide="dropdown" uib-dropdown-toggle><i class="glyphicon glyphicon-wrench"></i> Configuración</a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="config.outgoing" ng-click="vmNavigation.isCollapsed = !vmNavigation.isCollapsed">Controles</a></li>
+                        <li><a ui-sref="config.incoming" ng-click="vmNavigation.isCollapsed = !vmNavigation.isCollapsed">Mensajes</a></li>
+                    </ul>
+                </li>
+                <li class="nav" uib-dropdown>
+                    <a href ng-hide="dropdown" uib-dropdown-toggle><i class="glyphicon glyphicon-user"></i> {{ vmNavigation.session.name }}</a>
+                    <ul class="dropdown-menu">
+                        <li><a href ng-click="vmNavigation.logOut()"><i class="glyphicon glyphicon-log-out"></i> Salir</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

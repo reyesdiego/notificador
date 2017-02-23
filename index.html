@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+    <title>Alertas</title>
+    <style>
+
+        .ERROR {
+            color: red
+        }
+        .WARN {
+            color: darkorange;
+        }
+        /** { margin: 0; padding: 0; box-sizing: border-box; }*/
+        body { font: 13px Helvetica, Arial}
+        .main {
+            padding:0;
+            margin:0;
+            height: 850px;
+            border: 1px solid #c8c8c8;
+            /*background: url(images/verdeTapiz.jpg);;*/
+        }
+        form { background: rgb(0, 0, 255); padding: 3px; position: fixed; bottom: 0; width: 100%; }
+        form div { font-weight: bold; font-size:15px; color:white; text-align: center; border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+        form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+        form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+        .messages { list-style-type: none; margin: 0; padding: 0; }
+        .messages li { padding: 0px;}
+        .messages li:nth-child(odd) { background: rgb(230, 230, 230); }
+        .odd:nth-child(odd) { background: rgb(230, 230, 230);}
+        .even:nth-child(even) { background: rgb(230, 230, 230); }
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        var socket1;
+        var socket2;
+        var arra = [];
+        var odd = 'odd';
+
+        var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImRyZXllc0BwdWVydG9idWVub3NhaXJlcy5nb2IuYXIiLCJwYXNzd29yZCI6IjEyMzQ1NiIsImlhdCI6MTQ4NzU5Mjk1MCwiZXhwIjoxNDg3Njc5MzUwfQ.ZCkFtNfO9_yK0pW2d8sxUA_hu4OZ_8lkNLNk-5dbA7U';
+
+        socket1 = io.connect();
+        socket1.on('connect', function () {
+            socket1.emit('authenticate', {token: token});
+            socket1.emit('room', 'ALIVE');
+        });
+        socket2 = io.connect();
+        socket2.on('connect', function () {
+            socket2.emit('authenticate', {token: token});
+            socket2.emit('room', 'CTOL');
+        });
+
+        socket1.on('outgoing', function (data) {
+            arra.push(data);
+            add(data, '#messages1');
+        });
+
+        socket2.on('incoming', function (data) {
+            arra.push(data);
+            add(data, '#messages2');
+        });
+
+        socket1.on('isAlive', function (data) {
+            $('#hora').text(data.fecha);
+        });
+        function add (data, msg) {
+        var oddClass;
+            $(msg).append($('<li>').addClass(data.type).addClass(odd).text(data.fecha + ': ' + data.name + ' - ' + data.description + ' - Próximo: ' + data.nextInvocation + JSON.stringify(data.message) + ' Mail ' + data.emailSent));
+        }
+
+
+
+    </script>
+</head>
+<body>
+<div class="main">
+    <div style="margin:0; height: 100%; width: 50%; position: absolute">
+        <ul id="messages1" class="messages"></ul>
+    </div>
+    <div style="margin:0;height: 100%; width: 50%; position: absolute; padding-left: 50%">
+        <ul id="messages2" class="messages"></ul>
+    </div>
+
+    <form action="">
+        <!--<input id="m" autocomplete="off" /><button>Send</button>-->
+        <div id="hora"></div>
+    </form>
+</div>
+</body>
+</html>

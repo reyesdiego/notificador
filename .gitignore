@@ -1,6 +1,6 @@
 # Logs
 logs
-*.log
+*.out
 npm-debug.log*
 
 # Runtime data
@@ -24,10 +24,12 @@ coverage
 .lock-wscript
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
-build/Release
+client/build
+client/node_modules/
+client/bower_components
 
 # Dependency directories
-node_modules
+node_modules/
 jspm_packages
 
 # Optional npm cache directory
@@ -35,3 +37,7 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+
+.idea
+config/secret.js
