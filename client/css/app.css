@@ -1,6 +1,8 @@
 html, body {
     height: 100%;
-    background: url('../images/paper.jpg') center;
+    /*background-color: #0c516c;*/
+    background: url('../images/imagen_puerto.jpg') no-repeat fixed center;
+    background-size: cover;
 }
 
 .image-background {
@@ -123,7 +125,9 @@ html, body {
     height: auto;
     /* 1 */
     margin-left: 15px;
-    margin-top: 20px;
+    margin-top: 15px;
+    padding-bottom: 10px;
+
     width: auto;
 
     box-shadow: 3px 3px 5px rgba(0,0,0,0.6);
@@ -158,8 +162,9 @@ html, body {
 }
 
 .notification-card .notification-subtitle {
-    margin-top: -8px;
+    /*margin-top: -8px;*/
     font-size: 12px;
+    text-align: right   ;
     color: rgba(142, 146, 140, 1);
 }
 
@@ -224,14 +229,14 @@ html, body {
     /*flex: 1 1 auto;*/
     padding-left: 30px;
     padding-top: 1px;
-    width: auto;
+    /*width: auto;*/
 }
 
 .notification-card .notification-card-title .notification-text-title{
     /*flex: 1 1 auto;*/
     font-weight: 700;
     font-size: 15px;
-    margin-top: -10px;
+    /*margin-top: 5px;*/
     width: auto;
 }
 
