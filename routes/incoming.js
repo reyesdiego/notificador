@@ -25,8 +25,10 @@ var incoming = (io) => {
             });
     };
 
-    router.post('/incoming/:routeName', (req, res) => {
+    let sendIncoming = (req, res) => {
         var email = config.email;
+        var promise;
+
         var Incoming = require('../lib/incoming.js');
         Incoming = new Incoming();
         var Notification = require('../lib/notification.js');
@@ -52,51 +54,62 @@ var incoming = (io) => {
                         if (messages.length === undefined) {
                             messages = [messages];
                         }
+                    } else {
+                        messages = [];
                     }
                     response.emailSent = false;
-                    if (incoming.mail.status) {
-                        var Mail = require('../include/emailjs.js');
-                        Mail = new Mail(email);
-                        Mail.send(incoming.mail.accounts, incoming.name, JSON.stringify(req.body.message))
-                            .then(data => {
-                                messages.forEach(item => {
+                    promise = new Promise((resolveIncoming, reject) => {
+                        if (incoming.mail.status) {
+                            var Mail = require('../include/emailjs.js');
+                            Mail = new Mail(email);
+                            Mail.send(incoming.mail.accounts, incoming.description, JSON.stringify(messages))
+                                .then(data => {
                                     response.emailSent = true;
-                                    response.message = item;
-                                    incoming.group.map(group => (io.in(group).emit('incoming', response)));
+                                    resolveIncoming({
+                                        incomingId: incoming._id,
+                                        date: new Date(),
+                                        email: incoming.mail.accounts,
+                                        message: messages
+                                    });
+                                    console.log("MAIL %s a %s", incoming.name, incoming.mail.accounts);
+                                })
+                                .catch(err => {
+                                    resolveIncoming({
+                                        incomingId: incoming._id,
+                                        date: new Date(),
+                                        message: messages
+                                    });
+                                    console.error(err);
                                 });
-                                Notification.add({
-                                    incomingId: incoming._id,
-                                    date: new Date(),
-                                    message: messages,
-                                    email: incoming.mail.accounts
-                                });
-                                console.log("MAIL %s a %s", incoming.name, incoming.mail.accounts);
+                        } else {
+                            resolveIncoming({
+                                incomingId: incoming._id,
+                                date: new Date(),
+                                messages: messages});
+                        }
+                    });
+
+                    promise.then((data) => {
+                        if (data.message.length>0) {
+                            data.message.forEach(item => {
+                                response.message = item;
+                                incoming.group.map(group => (io.in(group).emit('incoming', response)));
+                            });
+                        } else {
+                            incoming.group.map(group => (io.in(group).emit('incoming', response)));
+                        }
+                        Notification.add(data)
+                        .then(data => {
+                                io.emit('isAlive', {status: "OK", name: incoming.name, fecha: fecha});
+                                res.status(200).send(data);
                             })
-                            .catch(err => {
-                                messages.forEach(item => {
-                                    response.message = item;
-                                    incoming.group.map(group => (io.in(group).emit('incoming', response)));
-                                });
-                                Notification.add({
-                                    incomingId: incoming._id,
-                                    date: new Date(),
-                                    message: messages
-                                });
+                        .catch(err => {
                                 console.error(err);
                             });
-                    } else {
-                        messages.forEach(item => {
-                            response.message = item;
-                            incoming.group.map(group => (io.in(group).emit('incoming', response)));
+                    })
+                    .catch(err => {
+                        console.error(err);
                         });
-                        Notification.add({
-                            incomingId: incoming._id,
-                            date: new Date(),
-                            message: messages
-                        });
-                    }
-                    io.emit('isAlive', {status: "OK", name: incoming.name, fecha: fecha});
-                    res.status(200).send(data);
                 } else {
                     data.message = `No existe el Mensaje ${req.params.routeName}`;
                     res.status(200).send(data);
@@ -106,7 +119,7 @@ var incoming = (io) => {
                 console.error(err.message);
                 res.status(500).send(err);
             });
-    });
+    };
 
     let add = (req, res) => {
         var incoming = req.body;
@@ -121,6 +134,7 @@ var incoming = (io) => {
 
 
     router.post('/incoming', add);
+    router.post('/incoming/:routeName', sendIncoming);
     router.get('/', getIncomings);
 
     return router;
