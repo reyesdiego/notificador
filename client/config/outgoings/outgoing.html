@@ -3,143 +3,138 @@
 </div>
 
 <div class="col-lg-6 col-xs-12">
-    <table class="table table-responsive table-hover table-striped">
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>URL</th>
-            <th><i class="glyphicon glyphicon-zoom-in"></i></th>
-            <th class="text-center"><i class="glyphicon glyphicon-edit"></i></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="outgoing in vmOutgoings.outgoings">
-            <td>{{ outgoing.name }}</td>
-            <td>{{ outgoing.completeUrl }}</td>
-            <td><a href ng-click="vmOutgoings.setOutgoing(outgoing)"><i class="glyphicon glyphicon-zoom-in"></i></a></td>
-            <td class="text-center">
-                <button type="button" class="btn btn-primary btn-xs" ng-click="outgoing.enable()" ng-hide="outgoing.status" title="Habilitar tarea"><i class="glyphicon glyphicon-check"></i></button>
-                <button type="button" class="btn btn-danger btn-xs" ng-click="outgoing.disable()" ng-show="outgoing.status" title="Deshabilitar tarea"><i class="glyphicon glyphicon-remove"></i></button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Controles cargados</div>
+        <div class="panel-body">
+            <table class="table table-responsive table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>URL</th>
+                    <th><i class="glyphicon glyphicon-zoom-in"></i></th>
+                    <th class="text-center"><i class="glyphicon glyphicon-edit"></i></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="outgoing in vmOutgoings.outgoings">
+                    <td>{{ outgoing.name }}</td>
+                    <td>{{ outgoing.completeUrl }}</td>
+                    <td><a href ng-click="vmOutgoings.setOutgoing(outgoing)"><i class="glyphicon glyphicon-zoom-in"></i></a></td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="outgoing.enable()" ng-hide="outgoing.status" title="Habilitar tarea"><i class="glyphicon glyphicon-check"></i></button>
+                        <button type="button" class="btn btn-danger btn-xs" ng-click="outgoing.disable()" ng-show="outgoing.status" title="Deshabilitar tarea"><i class="glyphicon glyphicon-remove"></i></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <div class="col-lg-6 col-xs-12">
     <form class="form-horizontal" ng-submit="vmOutgoings.saveOutgoing()">
-        <fieldset>
-            <legend>Nueva tarea</legend>
-            <div class="row">
-                <div class="form-group col-xs-5">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="inputNombre">Nombre</label>
-                        <input type="text" class="form-control" id="inputNombre" ng-model="vmOutgoings.editOutgoing.name" required>
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
-                        </span>
-                    </div>
-                </div>
-                <div class="form-group col-xs-5 inline-input">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="inputType">Tipo</label>
-                        <select class="form-control" id="inputType" ng-model="vmOutgoings.editOutgoing.type">
-                            <option value="ERROR">Error</option>
-                            <option value="WARN">Advertencia</option>
-                            <option value="INFO">Info</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="checkbox col-xs-2">
-                    <label>
-                        <input type="checkbox" class="checkbox" ng-model="vmOutgoings.editOutgoing.status"> Habilitar
-                    </label>
-                </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Nuevo Control
             </div>
-            <div class="row">
-                <div class="form-group  col-xs-12">
-                    <div class="input-group col-xs-12">
-                        <tags-input id="inputGroups" ng-model="vmOutgoings.groupsList" min-length="1" placeholder="Grupos que verán la tarea." add-from-autocomplete-only="true">
-                            <auto-complete source="vmOutgoings.loadGroups($query)" min-length="1" load-on-focus="true"></auto-complete>
-                        </tags-input>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-xs-12">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="inputDesc">Descripción</label>
-                        <input type="text" class="form-control" id="inputDesc" ng-model="vmOutgoings.editOutgoing.description">
+            <div class="panel-body">
+                <fieldset>
+                    <div class="form-group col-xs-5">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="inputNombre">Nombre</label>
+                            <input type="text" class="form-control" id="inputNombre" ng-model="vmOutgoings.editOutgoing.name" required>
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
                         </span>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-lg-3 col-xs-6">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="inputMethod">Método</label>
-                        <select type="text" class="form-control" id="inputMethod" ng-model="vmOutgoings.editOutgoing.req.method" required>
-                            <option>GET</option>
-                            <option>POST</option>
-                            <option>PUT</option>
-                            <option>DELETE</option>
-                        </select>
+                    <div class="form-group col-xs-5 inline-input">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="inputType">Tipo</label>
+                            <select class="form-control" id="inputType" ng-model="vmOutgoings.editOutgoing.type">
+                                <option value="ERROR">Error</option>
+                                <option value="WARN">Advertencia</option>
+                                <option value="INFO">Info</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group col-lg-3 col-xs-6 inline-input">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="inputDir">IP</label>
-                        <input type="text" class="form-control" id="inputDir" ng-model="vmOutgoings.editOutgoing.req.url" required>
+                    <div class="checkbox col-xs-2">
+                        <label>
+                            <input type="checkbox" class="checkbox" ng-model="vmOutgoings.editOutgoing.status"> Habilitar
+                        </label>
+                    </div>
+                    <div class="form-group  col-xs-12">
+                        <div class="input-group col-xs-12">
+                            <tags-input id="inputGroups" ng-model="vmOutgoings.groupsList" min-length="1" placeholder="Grupos que verán la tarea." add-from-autocomplete-only="true">
+                                <auto-complete source="vmOutgoings.loadGroups($query)" min-length="1" load-on-focus="true"></auto-complete>
+                            </tags-input>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="inputDesc">Descripción</label>
+                            <input type="text" class="form-control" id="inputDesc" ng-model="vmOutgoings.editOutgoing.description">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
                         </span>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group col-lg-3 col-xs-6 inline-input">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="inputPort">Puerto</label>
-                        <input type="number" class="form-control" id="inputPort" min="0" max="9999" ng-model="vmOutgoings.editOutgoing.req.port" required>
+                    <div class="form-group col-lg-3 col-xs-6">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="inputMethod">Método</label>
+                            <select type="text" class="form-control" id="inputMethod" ng-model="vmOutgoings.editOutgoing.req.method" required>
+                                <option>GET</option>
+                                <option>POST</option>
+                                <option>PUT</option>
+                                <option>DELETE</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-3 col-xs-6 inline-input">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="inputDir">IP</label>
+                            <input type="text" class="form-control" id="inputDir" ng-model="vmOutgoings.editOutgoing.req.url" required>
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
                         </span>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group col-lg-3 col-xs-6 inline-input">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="inputPath">Ruta</label>
-                        <input type="text" class="form-control" id="inputPath" ng-model="vmOutgoings.editOutgoing.req.path" required>
+                    <div class="form-group col-lg-3 col-xs-6 inline-input">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="inputPort">Puerto</label>
+                            <input type="number" class="form-control" id="inputPort" min="0" max="9999" ng-model="vmOutgoings.editOutgoing.req.port" required>
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
                         </span>
+                        </div>
                     </div>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-lg-8 col-xs-6">
-                    <div class="input-group col-xs-12">
-                        <tags-input
-                                id="inputFields"
-                                ng-model="vmOutgoings.fieldsList"
-                                min-length="1"
-                                placeholder="Nombres de campos a leer">
-                        </tags-input>
-                    </div>
-                </div>
-                <div class="form-group col-lg-4 col-xs-6 inline-input">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="inputDateField">Campo fecha</label>
-                        <input type="text" class="form-control" id="inputDateField" ng-model="vmOutgoings.editOutgoing.res.config.date">
+                    <div class="form-group col-lg-3 col-xs-6 inline-input">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="inputPath">Ruta</label>
+                            <input type="text" class="form-control" id="inputPath" ng-model="vmOutgoings.editOutgoing.req.path" required>
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
                         </span>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="panel panel-primary">
-                <div class="panel-heading">Headers</div>
-                <div class="panel-body">
+                    <div class="form-group col-lg-8 col-xs-6">
+                        <div class="input-group col-xs-12">
+                            <tags-input
+                                    id="inputFields"
+                                    ng-model="vmOutgoings.fieldsList"
+                                    min-length="1"
+                                    placeholder="Nombres de campos a leer">
+                            </tags-input>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-4 col-xs-6 inline-input">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="inputDateField">Campo fecha</label>
+                            <input type="text" class="form-control" id="inputDateField" ng-model="vmOutgoings.editOutgoing.res.config.date">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
+                        </span>
+                        </div>
+                    </div>
                     <table class="table table-responsive table-striped table-hover">
                         <thead>
                         <tr>
@@ -163,127 +158,118 @@
                         </tr>
                         </tfoot>
                     </table>
-                </div>
-            </div>
-            <div class="row">
-                <div class="checkbox col-xs-2">
-                    <label>
-                        <input type="checkbox" class="checkbox" ng-model="vmOutgoings.editOutgoing.mail.status"> Enviar mail
-                    </label>
-                </div>
-                <div class="form-group col-xs-5 inline-input">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="inputPeriod">Por:</label>
-                        <select class="form-control" id="inputPeriod" ng-model="vmOutgoings.editOutgoing.mail.period">
-                            <option value="minute">Minuto</option>
-                            <option value="hour">Hora</option>
-                            <option value="day">Día</option>
-                        </select>
+                    <div class="checkbox col-xs-2">
+                        <label>
+                            <input type="checkbox" class="checkbox" ng-model="vmOutgoings.editOutgoing.mail.status"> Enviar mail
+                        </label>
                     </div>
-                </div>
-                <div class="form-group col-xs-5 inline-input">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="inputCount">Cantidad</label>
-                        <input type="number" class="form-control" id="inputCount" min="1" max="100" ng-model="vmOutgoings.editOutgoing.mail.count">
+                    <div class="form-group col-xs-5 inline-input">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="inputPeriod">Por:</label>
+                            <select class="form-control" id="inputPeriod" ng-model="vmOutgoings.editOutgoing.mail.period">
+                                <option value="minute">Minuto</option>
+                                <option value="hour">Hora</option>
+                                <option value="day">Día</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-5 inline-input">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="inputCount">Cantidad</label>
+                            <input type="number" class="form-control" id="inputCount" min="1" max="100" ng-model="vmOutgoings.editOutgoing.mail.count">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
                         </span>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-xs-12">
-                    <div class="input-group col-xs-12">
-                        <tags-input
-                                id="inputMails"
-                                ng-model="vmOutgoings.emailList"
-                                min-length="1"
-                                placeholder="Agregue una dirección de email"
-                                on-tag-adding="vmOutgoings.validator.validateEmail($tag)"
-                        ></tags-input>
+                    <div class="form-group col-xs-12">
+                        <div class="input-group col-xs-12">
+                            <tags-input
+                                    id="inputMails"
+                                    ng-model="vmOutgoings.emailList"
+                                    min-length="1"
+                                    placeholder="Agregue una dirección de email"
+                                    on-tag-adding="vmOutgoings.validator.validateEmail($tag)"
+                            ></tags-input>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-lg-3 col-xs-5">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="inputStatus">Esperado</label>
-                        <select class="form-control" id="inputStatus" ng-model="vmOutgoings.editOutgoing.res.status" convert-to-number>
-                            <option value="200">200 - OK</option>
-                            <option value="302">302 - FOUND</option>
-                            <option value="403">403 - FORBIDDEN</option>
-                            <option value="404">404 - NOT FOUND</option>
-                            <option value="405">405 - METHOD NOT ALLOWED</option>
-                            <option value="500">500 - INTERNAL SERVER ERROR</option>
-                        </select>
-                        </span>
+                    <div class="form-group col-lg-3 col-xs-5">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="inputStatus">Esperado</label>
+                            <select class="form-control" id="inputStatus" ng-model="vmOutgoings.editOutgoing.res.status" convert-to-number>
+                                <option value="200">200 - OK</option>
+                                <option value="302">302 - FOUND</option>
+                                <option value="403">403 - FORBIDDEN</option>
+                                <option value="404">404 - NOT FOUND</option>
+                                <option value="405">405 - METHOD NOT ALLOWED</option>
+                                <option value="500">500 - INTERNAL SERVER ERROR</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group col-lg-9 col-xs-7 inline-input">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="inputMsg">Mensaje</label>
-                        <input type="text" class="form-control" id="inputMsg" ng-model="vmOutgoings.editOutgoing.res.description">
+                    <div class="form-group col-lg-9 col-xs-7 inline-input">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="inputMsg">Mensaje</label>
+                            <input type="text" class="form-control" id="inputMsg" ng-model="vmOutgoings.editOutgoing.res.description">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
                         </span>
+                        </div>
                     </div>
-                </div>
+                    <table class="table table-responsive table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th class="col-xs-2"></th>
+                            <th class="col-xs-8" colspan="7">Cada</th>
+                            <th class="col-xs-2 text-center">Repetir</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Segundos</td>
+                            <td colspan="7"><input type="number" class="form-control" min="{{ vmOutgoings.schedule.second.min }}" max="59" ng-model="vmOutgoings.schedule.second.value" ng-required="vmOutgoings.schedule.repeat == 0 || vmOutgoings.schedule.repeat > 4"></td>
+                            <td class="text-center"><input type="radio" name="repeatRadio" ng-model="vmOutgoings.schedule.repeat" ng-value="0" ng-click="vmOutgoings.setSchedule()" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Minutos</td>
+                            <td colspan="7"><input type="number" class="form-control" min="{{ vmOutgoings.schedule.minute.min }}" max="59" ng-model="vmOutgoings.schedule.minute.value" ng-disabled="vmOutgoings.schedule.repeat < 1" ng-required="vmOutgoings.schedule.repeat == 1 || vmOutgoings.schedule.repeat > 4"></td>
+                            <td class="text-center"><input type="radio" name="repeatRadio" ng-model="vmOutgoings.schedule.repeat" ng-value="1" ng-click="vmOutgoings.setSchedule()"></td>
+                        </tr>
+                        <tr>
+                            <td>Hora</td>
+                            <td colspan="7"><input type="number" class="form-control" min="{{ vmOutgoings.schedule.hour.min }}" max="23" ng-model="vmOutgoings.schedule.hour.value" ng-disabled="vmOutgoings.schedule.repeat < 2" ng-required="vmOutgoings.schedule.repeat == 2 || vmOutgoings.schedule.repeat > 4"></td>
+                            <td class="text-center"><input type="radio" name="repeatRadio" ng-model="vmOutgoings.schedule.repeat" ng-value="2" ng-click="vmOutgoings.setSchedule()"></td>
+                        </tr>
+                        <tr>
+                            <td>Día</td>
+                            <td colspan="7"><input type="number" class="form-control" min="1" max="31" ng-model="vmOutgoings.schedule.day.value" ng-disabled="vmOutgoings.schedule.repeat < 3" ng-required="vmOutgoings.schedule.repeat == 3 || vmOutgoings.schedule.repeat > 4"></td>
+                            <td class="text-center"><input type="radio" name="repeatRadio" ng-model="vmOutgoings.schedule.repeat" ng-value="3" ng-click="vmOutgoings.setSchedule()"></td>
+                        </tr>
+                        <tr>
+                            <td>Mes</td>
+                            <td colspan="7"><input type="number" class="form-control" min="1" max="12" ng-model="vmOutgoings.schedule.month.value" ng-disabled="vmOutgoings.schedule.repeat < 4" ng-required="vmOutgoings.schedule.repeat >= 4"></td>
+                            <td class="text-center"><input type="radio" name="repeatRadio" ng-model="vmOutgoings.schedule.repeat" ng-value="4" ng-click="vmOutgoings.setSchedule()"></td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td></td>
+                            <td ng-repeat="day in vmOutgoings.daysOfWeek">{{ day.day }}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Día de semana</td>
+                            <td ng-repeat="day in vmOutgoings.daysOfWeek"><input type="checkbox" ng-model="day.repeat" ng-disabled="vmOutgoings.schedule.repeat > 4"></td>
+                            <td><label><input type="radio" name="repeatRadio" ng-model="vmOutgoings.schedule.repeat" ng-value="5" ng-click="vmOutgoings.setSchedule()"> No repetir</label></td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Guardar</button>
+                        <button type="button" class="btn btn-danger" ng-show="vmOutgoings.editOutgoing._id" ng-click="vmOutgoings.deleteOutgoing()"><i class="glyphicon glyphicon-remove"></i> Eliminar</button>
+                        <button type="button" class="btn btn-default" ng-click="vmOutgoings.resetForm()"><i class="glyphicon glyphicon-remove-circle"></i> Limpiar</button>
+                    </div>
+                </fieldset>
             </div>
-            <table class="table table-responsive table-striped table-hover">
-                <thead>
-                <tr>
-                    <th class="col-xs-2"></th>
-                    <th class="col-xs-8" colspan="7">Cada</th>
-                    <th class="col-xs-2 text-center">Repetir</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Segundos</td>
-                    <td colspan="7"><input type="number" class="form-control" min="{{ vmOutgoings.schedule.second.min }}" max="59" ng-model="vmOutgoings.schedule.second.value" ng-required="vmOutgoings.schedule.repeat == 0 || vmOutgoings.schedule.repeat > 4"></td>
-                    <td class="text-center"><input type="radio" name="repeatRadio" ng-model="vmOutgoings.schedule.repeat" ng-value="0" ng-click="vmOutgoings.setSchedule()" checked></td>
-                </tr>
-                <tr>
-                    <td>Minutos</td>
-                    <td colspan="7"><input type="number" class="form-control" min="{{ vmOutgoings.schedule.minute.min }}" max="59" ng-model="vmOutgoings.schedule.minute.value" ng-disabled="vmOutgoings.schedule.repeat < 1" ng-required="vmOutgoings.schedule.repeat == 1 || vmOutgoings.schedule.repeat > 4"></td>
-                    <td class="text-center"><input type="radio" name="repeatRadio" ng-model="vmOutgoings.schedule.repeat" ng-value="1" ng-click="vmOutgoings.setSchedule()"></td>
-                </tr>
-                <tr>
-                    <td>Hora</td>
-                    <td colspan="7"><input type="number" class="form-control" min="{{ vmOutgoings.schedule.hour.min }}" max="23" ng-model="vmOutgoings.schedule.hour.value" ng-disabled="vmOutgoings.schedule.repeat < 2" ng-required="vmOutgoings.schedule.repeat == 2 || vmOutgoings.schedule.repeat > 4"></td>
-                    <td class="text-center"><input type="radio" name="repeatRadio" ng-model="vmOutgoings.schedule.repeat" ng-value="2" ng-click="vmOutgoings.setSchedule()"></td>
-                </tr>
-                <tr>
-                    <td>Día</td>
-                    <td colspan="7"><input type="number" class="form-control" min="1" max="31" ng-model="vmOutgoings.schedule.day.value" ng-disabled="vmOutgoings.schedule.repeat < 3" ng-required="vmOutgoings.schedule.repeat == 3 || vmOutgoings.schedule.repeat > 4"></td>
-                    <td class="text-center"><input type="radio" name="repeatRadio" ng-model="vmOutgoings.schedule.repeat" ng-value="3" ng-click="vmOutgoings.setSchedule()"></td>
-                </tr>
-                <tr>
-                    <td>Mes</td>
-                    <td colspan="7"><input type="number" class="form-control" min="1" max="12" ng-model="vmOutgoings.schedule.month.value" ng-disabled="vmOutgoings.schedule.repeat < 4" ng-required="vmOutgoings.schedule.repeat >= 4"></td>
-                    <td class="text-center"><input type="radio" name="repeatRadio" ng-model="vmOutgoings.schedule.repeat" ng-value="4" ng-click="vmOutgoings.setSchedule()"></td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td></td>
-                    <td ng-repeat="day in vmOutgoings.daysOfWeek">{{ day.day }}</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Día de semana</td>
-                    <td ng-repeat="day in vmOutgoings.daysOfWeek"><input type="checkbox" ng-model="day.repeat" ng-disabled="vmOutgoings.schedule.repeat > 4"></td>
-                    <td><label><input type="radio" name="repeatRadio" ng-model="vmOutgoings.schedule.repeat" ng-value="5" ng-click="vmOutgoings.setSchedule()"> No repetir</label></td>
-                </tr>
-                </tfoot>
-            </table>
-            <div class="pull-right">
-                <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Guardar</button>
-                <button type="button" class="btn btn-danger" ng-show="vmOutgoings.editOutgoing._id" ng-click="vmOutgoings.deleteOutgoing()"><i class="glyphicon glyphicon-remove"></i> Eliminar</button>
-                <button type="button" class="btn btn-default" ng-click="vmOutgoings.resetForm()"><i class="glyphicon glyphicon-remove-circle"></i> Limpiar</button>
-            </div>
-
-        </fieldset>
-
+        </div>
     </form>
 </div>

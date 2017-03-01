@@ -3,114 +3,116 @@
 </div>
 
 <div class="col-lg-6">
-    <table class="table table-responsive table-hover table-striped">
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th><i class="glyphicon glyphicon-zoom-in"></i></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="incoming in vmIncomings.incomings">
-            <td>{{ incoming.name }}</td>
-            <td>{{ incoming.description }}</td>
-            <td><a href ng-click="vmIncomings.setIncoming(incoming)"><i class="glyphicon glyphicon-zoom-in"></i></a></td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Mensajes cargados
+        </div>
+        <div class="panel-body">
+            <table class="table table-responsive table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th><i class="glyphicon glyphicon-zoom-in"></i></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="incoming in vmIncomings.incomings">
+                    <td>{{ incoming.name }}</td>
+                    <td>{{ incoming.description }}</td>
+                    <td><a href ng-click="vmIncomings.setIncoming(incoming)"><i class="glyphicon glyphicon-zoom-in"></i></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <div class="col-lg-6">
     <form class="form-horizontal" ng-submit="vmIncomings.saveIncoming()">
-        <fieldset>
-            <legend>Nueva tarea</legend>
-            <div class="row">
-                <div class="form-group col-xs-6">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="inputNombre">Nombre</label>
-                        <input type="text" class="form-control" id="inputNombre" ng-model="vmIncomings.editIncoming.name" required>
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
-                        </span>
-                    </div>
-                </div>
-                <div class="form-group col-xs-6 inline-input">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="inputType">Tipo</label>
-                        <select class="form-control" id="inputType" ng-model="vmIncomings.editIncoming.type">
-                            <option value="ERROR">Error</option>
-                            <option value="WARN">Advertencia</option>
-                            <option value="INFO">Info</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-xs-12">
-                    <div class="input-group col-xs-12">
-                        <tags-input id="inputGroups" ng-model="vmIncomings.groupsList" min-length="1" placeholder="Grupos que verán la tarea." add-from-autocomplete-only="true">
-                            <auto-complete source="vmIncomings.loadGroups($query)" min-length="1" load-on-focus="true"></auto-complete>
-                        </tags-input>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-xs-12">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="inputDesc">Descripción</label>
-                        <input type="text" class="form-control" id="inputDesc" ng-model="vmIncomings.editIncoming.description">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="checkbox col-xs-4 col-lg-2">
-                    <label>
-                        <input type="checkbox" class="checkbox" ng-model="vmIncomings.editIncoming.mail.status"> Enviar mail
-                    </label>
-                </div>
-                <!--<div class="form-group col-lg-5 inline-input">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="inputPeriod">Por:</label>
-                        <select class="form-control" id="inputPeriod" ng-model="vmIncomings.editIncoming.mail.period">
-                            <option value="minute">Minuto</option>
-                            <option value="hour">Hora</option>
-                            <option value="day">Día</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group col-lg-5 inline-input">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="inputCount">Cantidad</label>
-                        <input type="number" class="form-control" id="inputCount" min="1" max="100" ng-model="vmIncomings.editIncoming.mail.count">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
-                        </span>
-                    </div>
-                </div>-->
-            </div>
-            <div class="row">
-                <div class="form-group col-xs-12">
-                    <div class="input-group col-xs-12">
-                        <tags-input
-                                id="inputMails"
-                                ng-model="vmIncomings.emailList"
-                                min-length="1"
-                                placeholder="Agregue una dirección de email"
-                                on-tag-adding="vmIncomings.validator.validateEmail($tag)"
-                        ></tags-input>
-                    </div>
-                </div>
-            </div>
-            <div class="pull-right">
-                <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Guardar</button>
-                <button type="button" class="btn btn-danger" ng-show="vmIncomings.editIncoming._id" ng-click="vmIncomings.deleteIncoming()"><i class="glyphicon glyphicon-remove"></i> Eliminar</button>
-                <button type="button" class="btn btn-default" ng-click="vmIncomings.resetForm()"><i class="glyphicon glyphicon-remove-circle"></i> Limpiar</button>
-            </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Nuevo mensaje</div>
+            <div class="panel-body">
+                <fieldset>
 
-        </fieldset>
+                    <div class="form-group col-xs-6">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="inputNombre">Nombre</label>
+                            <input type="text" class="form-control" id="inputNombre" ng-model="vmIncomings.editIncoming.name" required>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-6 inline-input">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="inputType">Tipo</label>
+                            <select class="form-control" id="inputType" ng-model="vmIncomings.editIncoming.type">
+                                <option value="ERROR">Error</option>
+                                <option value="WARN">Advertencia</option>
+                                <option value="INFO">Info</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <div class="input-group col-xs-12">
+                            <tags-input id="inputGroups" ng-model="vmIncomings.groupsList" min-length="1" placeholder="Grupos que verán la tarea." add-from-autocomplete-only="true">
+                                <auto-complete source="vmIncomings.loadGroups($query)" min-length="1" load-on-focus="true"></auto-complete>
+                            </tags-input>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="inputDesc">Descripción</label>
+                            <input type="text" class="form-control" id="inputDesc" ng-model="vmIncomings.editIncoming.description">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="checkbox col-xs-4 col-lg-2">
+                        <label>
+                            <input type="checkbox" class="checkbox" ng-model="vmIncomings.editIncoming.mail.status"> Enviar mail
+                        </label>
+                    </div>
+                    <!--<div class="form-group col-lg-5 inline-input">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="inputPeriod">Por:</label>
+                            <select class="form-control" id="inputPeriod" ng-model="vmIncomings.editIncoming.mail.period">
+                                <option value="minute">Minuto</option>
+                                <option value="hour">Hora</option>
+                                <option value="day">Día</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-5 inline-input">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="inputCount">Cantidad</label>
+                            <input type="number" class="form-control" id="inputCount" min="1" max="100" ng-model="vmIncomings.editIncoming.mail.count">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
+                            </span>
+                        </div>
+                    </div>-->
 
+                    <div class="form-group col-xs-12">
+                        <div class="input-group col-xs-12">
+                            <tags-input
+                                    id="inputMails"
+                                    ng-model="vmIncomings.emailList"
+                                    min-length="1"
+                                    placeholder="Agregue una dirección de email"
+                                    on-tag-adding="vmIncomings.validator.validateEmail($tag)"
+                            ></tags-input>
+                        </div>
+                    </div>
+
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Guardar</button>
+                        <button type="button" class="btn btn-danger" ng-show="vmIncomings.editIncoming._id" ng-click="vmIncomings.deleteIncoming()"><i class="glyphicon glyphicon-remove"></i> Eliminar</button>
+                        <button type="button" class="btn btn-default" ng-click="vmIncomings.resetForm()"><i class="glyphicon glyphicon-remove-circle"></i> Limpiar</button>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
     </form>
 </div>

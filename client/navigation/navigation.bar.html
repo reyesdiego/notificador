@@ -20,9 +20,9 @@
 
         <div class="collapse navbar-collapse" id="user" aria-expanded="false" uib-collapse="vmNavigation.isCollapsed">
             <ul class="nav navbar-nav navbar-left">
-                <li class="nav"><a ui-sref="notifications" ng-click="vmNavigation.isCollapsed = !vmNavigation.isCollapsed">Avisos <span class="badge">{{ vmNavigation.notifications.infoCount }}</span></a></li>
-                <li class="nav"><a ui-sref="notifications" ng-click="vmNavigation.isCollapsed = !vmNavigation.isCollapsed">Alertas <span class="badge">{{ vmNavigation.notifications.warningCount }}</span></a></li>
-                <li class="nav"><a ui-sref="notifications" ng-click="vmNavigation.isCollapsed = !vmNavigation.isCollapsed">Alarmas <span class="badge">{{ vmNavigation.notifications.alertCount }}</span></a></li>
+                <li><a ui-sref="notifications" ng-click="vmNavigation.isCollapsed = true">Avisos <span class="badge">{{ vmNavigation.notifications.infoCount }}</span></a></li>
+                <li><a ui-sref="notifications" ng-click="vmNavigation.isCollapsed = true">Alertas <span class="badge">{{ vmNavigation.notifications.warningCount }}</span></a></li>
+                <li><a ui-sref="notifications" ng-click="vmNavigation.isCollapsed = true">Alarmas <span class="badge">{{ vmNavigation.notifications.alertCount }}</span></a></li>
                 <!--<li class="dropdown open" uib-dropdown>
                     <a href="#" class="dropdown-toggle"  uib-dropdown-toggle data-toggle="dropdown" role="button" aria-expanded="true"><span uib-dropdown-toggle class="glyphicon glyphicon-user"></span> {{ session.getName() }} <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu" uib-dropdown-menu>
@@ -38,8 +38,8 @@
                 <li ng-show="vmNavigation.session.isAdmin" class="nav" uib-dropdown>
                     <a href ng-hide="dropdown" uib-dropdown-toggle><i class="glyphicon glyphicon-wrench"></i> Configuración</a>
                     <ul class="dropdown-menu">
-                        <li><a ui-sref="config.outgoing" ng-click="vmNavigation.isCollapsed = !vmNavigation.isCollapsed">Controles</a></li>
-                        <li><a ui-sref="config.incoming" ng-click="vmNavigation.isCollapsed = !vmNavigation.isCollapsed">Mensajes</a></li>
+                        <li><a ui-sref="config.outgoing" ng-click="vmNavigation.isCollapsed = true">Controles</a></li>
+                        <li><a ui-sref="config.incoming" ng-click="vmNavigation.isCollapsed = true">Mensajes</a></li>
                     </ul>
                 </li>
                 <li class="nav" uib-dropdown>
