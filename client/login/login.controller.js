@@ -1,7 +1,7 @@
 /**
  * Created by kolesnikov-a on 13/02/2017.
  */
-sistemaAlertas.controller('loginCtrl', ['Session', '$state', 'dialogsService', function(Session, $state, dialogsService){
+sistemaAlertas.controller('loginCtrl', ['Session', '$state', 'dialogsService', 'notificationService', function(Session, $state, dialogsService, notificationService){
 
 	let vm = this;
 
@@ -11,6 +11,7 @@ sistemaAlertas.controller('loginCtrl', ['Session', '$state', 'dialogsService', f
 
 	vm.login = () => {
 		vm.session.login().then(() => {
+			notificationService.init();
 			$state.transitionTo('notifications');
 		}).catch((error) => {
 			dialogsService.error('Monitoreo', `Se ha producido un error al intentar iniciar sesión. \n${error.data.message}`);

@@ -21,7 +21,7 @@ gulp.task('minify', function(){
 		.pipe(minify({ noSource: true }).on('error', function(e) {
 			console.log(e);
 		}))
-		.pipe(gulp.dest('build/'))
+		.pipe(gulp.dest('../build/'))
 });
 
 gulp.task('minify-css', function() {
@@ -31,7 +31,7 @@ gulp.task('minify-css', function() {
 		// Minify the stylesheet
 		.pipe(cleanCss({ debug: true }))
 		// Write the minified file in the css directory
-		.pipe(gulp.dest('build/css/'));
+		.pipe(gulp.dest('../build/css/'));
 	// place code for your default task here
 });
 
@@ -53,7 +53,7 @@ gulp.task('html-replace', function() {
 			'app': 'app-min.js',
 			'socket': 'lib/socket.io-1.4.5.js'
 		}))
-		.pipe(gulp.dest('build/'));
+		.pipe(gulp.dest('../build/'));
 });
 
 gulp.task('copy-files', function(){
@@ -72,14 +72,14 @@ gulp.task('copy-files', function(){
 	for (var template in templates) {
 		console.log(template);
 		gulp.src(templates[template])
-			.pipe(gulp.dest("build/" + template))
+			.pipe(gulp.dest("../build/" + template))
 	}
 });
 
 gulp.task("copy-bower-dependencies", function () {
 	var paths = {
 		bower: "bower_components/",
-		lib: "build/lib/"
+		lib: "../build/lib/"
 	};
 
 	var bower = {

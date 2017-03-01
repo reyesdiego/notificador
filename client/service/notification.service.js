@@ -11,7 +11,7 @@ sistemaAlertas.service('notificationService', ['Socket', 'API_ENDPOINT', '$timeo
 
 			this.watchedSystems = [];
 
-			this.init();
+			if (Session.isAuthenticated) this.init();
 		}
 
 		init(){
