@@ -15,63 +15,61 @@ sistemaAlertas.service('notificationService', ['Socket', 'API_ENDPOINT', '$timeo
 		}
 
 		init(){
+			this.lastControl = null;
+			this.watchedSystems = [];
 
-			if (this.socket == null){
-				this.lastControl = null;
-				this.watchedSystems = [];
+			this.socket = new Socket(API_ENDPOINT, 'notificaciones:');
 
-				this.socket = new Socket(API_ENDPOINT, 'notificaciones:');
+			Session.tasks.forEach((task) => {
+				let room = new NotificationRoom(task);
+				this.watchedSystems.push(room);
+				room.checkNotifications();
+			});
 
-				Session.tasks.forEach((task) => {
-					let room = new NotificationRoom(task);
-					this.watchedSystems.push(room);
-					room.checkNotifications();
-				});
+			let totalSystems = Session.tasks.length;
+			let widthPanel = 4;
 
-				let totalSystems = Session.tasks.length;
-				let widthPanel = 4;
-
-				this.panelHeigth = 'half-screen';
-				if (totalSystems < 4){
-					widthPanel = 12 / totalSystems;
-					this.panelHeigth = 'full-screen';
-				} else if (totalSystems == 4){
-					widthPanel = 6;
-				}
-
-				this.panelWidth = `col-xs-${widthPanel}`;
-
-				this.socket.connection.on('connect', () => {
-
-					this.lastControl = new Notification({
-						system: 'Monitoreo',
-						name: 'Monitoreo - conexión establecida',
-						type: 'INFO',
-						fecha: new Date()
-					});
-
-					this.socket.connection.on('isAlive', (data) => {
-						this.lastControl = new Notification(data);
-					});
-
-				});
-
-				this.socket.connection.on('connect_error', () => {
-					this.lastControl = new Notification({
-						name: 'Fallo de conexión con el servidor',
-						fecha: new Date(),
-						status: 'ERROR'
-					})
-				});
-
-				this.socket.connection.on('reconnect_attempt', () => {
-					this.lastControl = new Notification({
-						name: 'Intentando reconectar...',
-						fecha: new Date(),
-						status: 'INFO'
-					});
-				});
+			this.panelHeigth = 'half-screen';
+			if (totalSystems < 4){
+				widthPanel = 12 / totalSystems;
+				this.panelHeigth = 'full-screen';
+			} else if (totalSystems == 4){
+				widthPanel = 6;
 			}
+
+			this.panelWidth = `col-xs-${widthPanel}`;
+
+			this.socket.connection.on('connect', () => {
+
+				this.lastControl = new Notification({
+					system: 'Monitoreo',
+					name: 'Monitoreo - conexión establecida',
+					type: 'INFO',
+					fecha: new Date()
+				});
+
+				this.socket.connection.on('isAlive', (data) => {
+					this.lastControl = new Notification(data);
+				});
+
+			});
+
+			this.socket.connection.on('connect_error', () => {
+				this.lastControl = new Notification({
+					name: 'Fallo de conexión con el servidor',
+					fecha: new Date(),
+					status: 'ERROR'
+				})
+			});
+
+			this.socket.connection.on('reconnect_attempt', () => {
+				this.lastControl = new Notification({
+					name: 'Intentando reconectar...',
+					fecha: new Date(),
+					status: 'INFO'
+				});
+			});
+
 
 		};
 
