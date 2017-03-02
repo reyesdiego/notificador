@@ -12,13 +12,13 @@ var bodyParser = require('body-parser');
 var http = require('http');
 var path = require('path');
 
-require('./mongoose.js')(config.mongo.url, config.mongo.options);
+require('local-mongoose')(config.mongo.url, config.mongo.options);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride());
 
-app.use(express.static(__dirname + '/build'));
+app.use(express.static(__dirname + '/client'));
 //app.use(express.static(__dirname + '/Script'));
 
 

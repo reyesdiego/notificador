@@ -10,12 +10,12 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.16.0",
-    "emailjs": "^1.0.8",
     "express": "^4.14.0",
     "jsonwebtoken": "^5.7.0",
+    "local-emailjs": "file:///home/diego/Desarrollo/Common/local-emailjs",
+    "local-mongoose": "file:///home/diego/Desarrollo/Common/local-mongoose",
     "method-override": "^2.3.7",
     "moment": "^2.17.1",
-    "mongoose": "^4.7.7",
     "node-schedule": "^1.2.0",
     "socket.io": "^1.7.2"
   }
