@@ -272,13 +272,17 @@ html, body {
         text-align: right !important;
     }
 
-    /*.navbar-clock {
-        width: 60%;
-    }*/
+    .navbar-clock a{
+        cursor: default;
+    }
 
     .navbar-center {
         width: 100%;
         text-align: center;
+    }
+
+    .navbar-center a {
+        cursor: default;
     }
 }
 
@@ -292,6 +296,16 @@ html, body {
     color: black;
 }
 
-li a{
-    color: black !important;
+.dropdown-menu {
+    background-color: #158cba;
+    border-width: 0;
+}
+
+li a {
+    background-color: #158cba;
+    color: white !important;
+}
+
+li:hover {
+    background-color: #136285
 }
