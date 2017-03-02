@@ -28,14 +28,16 @@ sistemaAlertas.factory('NotificationRoom', ['Socket', 'Notification', 'SYSTEMS',
 
 				this.socket.connection.emit('room', system);
 
-				this.socket.connection.on('outgoing', (data) => {
-					this.setNotification(data);
-				});
+			});
 
-				this.socket.connection.on('incoming', (data) => {
-					this.setNotification(data);
-				});
+			this.socket.connection.on('outgoing', (data) => {
+				console.log(this.socket.connection.id);
+				this.setNotification(data);
+			});
 
+			this.socket.connection.on('incoming', (data) => {
+				console.log(this.socket.connection.id);
+				this.setNotification(data);
 			});
 
 			this.socket.connection.on('disconnect', (error) => {
