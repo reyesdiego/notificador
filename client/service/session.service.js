@@ -73,11 +73,9 @@ sistemaAlertas.service('Session', ['storageService', '$http', 'API_ENDPOINT', '$
         }
 
         logOut(){
-            this.data = {
-                email: '',
-                password: '',
-                group: []
-            };
+            this.data.email = '';
+            this.data.password = '';
+            this.data.group = [];
             storageService.deleteKey('user');
             storageService.deleteKey('token');
             $state.transitionTo('login');
