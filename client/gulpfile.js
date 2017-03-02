@@ -39,7 +39,7 @@ gulp.task('html-replace', function() {
 	gulp.src('index.html')
 		.pipe(htmlreplace({
 			'css': {
-				src: ['css/styles.min.css', 'css/bootstrap.lumen.min.css', 'lib/animate.css/animate.min.css']
+				src: ['css/bootstrap.lumen.min.css', 'lib/animate.css/animate.min.css', 'css/styles.min.css']
 			},
 			'bower': {
 				src: ['lib/angular/angular.min.js',
