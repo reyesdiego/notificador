@@ -288,7 +288,21 @@ html, body {
 
 .navbar {
     border-width: 0;
-    background-color: #158cba;
+    background-color: #136285;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+.navbar-brand:hover {
+    background-color: #1b94cb !important;
+    color: white !important;
+}
+
+.navbar-brand:focus {
+    background-color: #136285 !important;
+    color: white !important;
 }
 
 .badge {
@@ -297,15 +311,15 @@ html, body {
 }
 
 .dropdown-menu {
-    background-color: #158cba;
+    background-color: #136285;
     border-width: 0;
 }
 
 li a {
-    background-color: #158cba;
+    background-color: #136285;
     color: white !important;
 }
 
 li:hover {
-    background-color: #136285
+    background-color: #1b94cb
 }
