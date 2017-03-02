@@ -60,7 +60,7 @@ var incoming = (io) => {
                     response.emailSent = false;
                     promise = new Promise((resolveIncoming, reject) => {
                         if (incoming.mail.status) {
-                            var Mail = require('../include/emailjs.js');
+                            var Mail = require('local-emailjs');
                             Mail = new Mail(email);
                             Mail.send(incoming.mail.accounts, incoming.description, JSON.stringify(messages))
                                 .then(data => {
