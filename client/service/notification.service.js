@@ -78,6 +78,7 @@ sistemaAlertas.service('notificationService', ['Socket', 'API_ENDPOINT', '$timeo
 			this.watchedSystems.forEach((system) => {
 				system.disconnect();
 			});
+			this.socket.connection.removeAllListeners();
 			this.socket.connection.disconnect();
 		};
 

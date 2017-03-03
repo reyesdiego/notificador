@@ -31,12 +31,10 @@ sistemaAlertas.factory('NotificationRoom', ['Socket', 'Notification', 'SYSTEMS',
 			});
 
 			this.socket.connection.on('outgoing', (data) => {
-				console.log(this.socket.connection.id);
 				this.setNotification(data);
 			});
 
 			this.socket.connection.on('incoming', (data) => {
-				console.log(this.socket.connection.id);
 				this.setNotification(data);
 			});
 
@@ -92,6 +90,7 @@ sistemaAlertas.factory('NotificationRoom', ['Socket', 'Notification', 'SYSTEMS',
 
 		disconnect(){
 			$timeout.cancel(this.controlPromise);
+			this.socket.connection.removeAllListeners();
 			this.socket.connection.disconnect();
 		}
 
