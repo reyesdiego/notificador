@@ -43,6 +43,11 @@ sistemaAlertas.config(['$urlRouterProvider', '$stateProvider',  function($urlRou
 		templateUrl: 'config/incomings/incoming.html',
 		controller: 'incomingCtrl as vmIncomings',
 		requireAuth: true
+	}).state('history', {
+		url: '/history',
+		templateUrl: 'history/history.html',
+		controller: 'historyCtrl as vmHistory',
+		requireAuth: true
 	})
 
 }]);

@@ -1,7 +1,7 @@
 /**
  * Created by kolesnikov-a on 14/11/2016.
  */
-sistemaAlertas.service('notificationService', ['Socket', 'API_ENDPOINT', '$timeout', 'Session', 'Notification', 'NotificationRoom', function(Socket, API_ENDPOINT, $timeout, Session, Notification, NotificationRoom){
+sistemaAlertas.service('notificationService', ['Socket', 'API_ENDPOINT', '$timeout', 'Session', 'Notification', 'NotificationRoom', '$q', function(Socket, API_ENDPOINT, $timeout, Session, Notification, NotificationRoom, $q){
 
 	class notificationService {
 
@@ -72,6 +72,17 @@ sistemaAlertas.service('notificationService', ['Socket', 'API_ENDPOINT', '$timeo
 
 
 		};
+
+		getGroupHistory(group, page){
+			let index = 0;
+			let count = 0;
+			this.watchedSystems.forEach((system) => {
+				if (system.group == group) index = count;
+				count++
+			});
+			console.log(index);
+			return this.watchedSystems[index].getHistory(page);
+		}
 
 		closeConnection(){
 			$timeout.cancel(this.controlPromise);

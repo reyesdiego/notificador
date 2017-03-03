@@ -97,6 +97,17 @@ html, body {
     justify-content : center;
 }
 
+.WARN {
+    background-color: rgb(255, 240, 113);
+}
+
+.INFO {
+    background-color: rgba(106, 185, 255, 0.77);
+}
+
+.ERROR{
+    background-color: rgba(255, 21, 16, 0.37);
+}
 
 .inline-input {
     margin-left: auto !important;
@@ -112,29 +123,6 @@ html, body {
     min-height: 90vh;
     max-height: 90vh;
     overflow: hidden;
-}
-
-.page-header h1{
-    color: white;
-}
-
-.panel {
-    background-color: #e6e6e6;
-    border: 2px solid #158cba;
-}
-
-.panel-notification {
-    opacity: .9;
-}
-
-.panel-heading {
-    border-top-right-radius: 1px;
-    border-top-left-radius: 1px;
-}
-
-.panel-title {
-    font-weight: 600;
-    font-size: 17px;
 }
 
 .notification-card {
@@ -267,6 +255,8 @@ html, body {
     word-wrap: break-word;
 }
 
+
+/*  Some overwritings to bootstrap's */
 @media (min-width:768px) { /* don't break navbar on small screen */
     .navbar-right {
         text-align: right !important;
@@ -322,4 +312,39 @@ li a {
 
 li:hover {
     background-color: #1b94cb
+}
+
+.page-header h1{
+    color: white;
+}
+
+.panel {
+    background-color: #e6e6e6;
+    border: 2px solid #158cba;
+}
+
+.panel-notification {
+    opacity: .9;
+}
+
+.panel-heading {
+    border-top-right-radius: 1px;
+    border-top-left-radius: 1px;
+}
+
+.panel-title {
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.table-bordered {
+    border: 0
+}
+
+.table-bordered th,
+.table-bordered td {
+    border-top: 0 solid black !important;
+    border-left: 0 solid black !important;
+    border-right: 0 solid black !important;
+    border-bottom: 1px solid black !important;
 }

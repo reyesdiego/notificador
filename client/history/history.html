@@ -1,0 +1,33 @@
+<div class="row col-lg-12 page-header"></div>
+
+<div ng-repeat="system in vmHistory.notifications.watchedSystems track by $index">
+    <div class="{{ vmHistory.notifications.panelWidth }}">
+        <div class="panel panel-primary panel-notification {{ vmHistory.notifications.panelHeigth }}">
+            <div class="panel-heading">
+                Historial - {{ system.system }}
+            </div>
+            <div class="panel-body">
+                <table class="table table-responsive table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                        <th>Nombre</th>
+                        <th>Mensaje</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="notification in system.history" ng-class="notification.type">
+                        <td>{{ notification.control }}</td>
+                        <td>{{ notification.date | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{ notification.name }}</td>
+                        <td>{{ notification.message }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <uib-pagination></uib-pagination>
+            </div>
+        </div>
+    </div>
+</div>
