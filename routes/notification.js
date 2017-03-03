@@ -17,7 +17,9 @@ var notification = () => {
 
     let getNotifications = (req, res) => {
 
-        var params = {};
+        var params = {
+            group: req.query.group
+        };
         var options = {
             skip: req.params.skip,
             limit: req.params.limit
