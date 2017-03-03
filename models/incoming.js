@@ -21,7 +21,8 @@ var incoming = new mongoose.Schema({
             description: {type: String},
             type: {type: String}
         }
-    ]
+    ],
+    group: [{type: String}]
 });
 
 module.exports = mongoose.model('incomings', incoming);
