@@ -6,11 +6,15 @@ Hay dos tipos de monitoreos, uno por eventos y otro por esquema de checkeo de ma
 ### Login
 
 **URL** : http://localhost:port/login
+
 **METHOD**: 'POST'
+
 **HEADER**: 
     Content-Type: application/json
+
 **DATA**: 
     {"email": "mmoran@puertobuenosaires.gob.ar", "password": "123456"}
+	
 **RESPONSE**: 
     {
         "status": "OK",
@@ -18,6 +22,7 @@ Hay dos tipos de monitoreos, uno por eventos y otro por esquema de checkeo de ma
                 "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1tb3JhbkBwdWVydG9idWVub3NhaXJlcy5nb2IuYXIiLCJwYXNzd29yZCI6IjEyMzQ1NiIsImlhdCI6MTQ4ODU0NTc0OCwiZXhwIjoxNDg4NjMyMTQ4fQ.N2TiJPhE4OKSKorLkkEdwnMSu3KIMoDqRFH3bS0oQEE"
             }
     }
+
 
 ### Eventos
 
