@@ -132,8 +132,31 @@ var incoming = (io) => {
             });
     };
 
+    let change = (req, res) => {
+        var incoming = req.body;
+        Incoming.change(req.params.routeName)
+            .then(data => {
+                res.status(200).send(data);
+            })
+            .catch(err => {
+                res.status(500).send(err);
+            });
+    };
+
+    let remove = (req, res) => {
+
+        Incoming.remove(req.params.routeName)
+            .then(data => {
+                res.status(200).send(data);
+            })
+            .catch(err => {
+                res.status(500).send(err);
+            });
+    };
 
     router.post('/incoming', add);
+    router.put('/incoming/:routeName', change);
+    router.delete('/incoming/:routeName', remove);
     router.post('/incoming/:routeName', sendIncoming);
     router.get('/', getIncomings);
 
