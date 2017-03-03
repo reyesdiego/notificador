@@ -13,15 +13,15 @@ sistemaAlertas.factory('Incoming', ['$http', '$q', 'API_ENDPOINT', function($htt
 				this.mail = {
 					status: false,
 					accounts: []
-				}
+				};
 			}
 		}
 
 		update(){
 			const deferred = $q.defer();
-			const inserturl = `http://${API_ENDPOINT}/incoming/${this.name}/change`;
+			const inserturl = `http://${API_ENDPOINT}/incomings/incoming/${this.name}`;
 			$http.put(inserturl, this).then((response) => {
-				if (response.data.status == 'OK'){
+				if (response.data.status === 'OK'){
 					response.data.task = 'update';
 					deferred.resolve(response.data);
 				} else {
@@ -35,9 +35,9 @@ sistemaAlertas.factory('Incoming', ['$http', '$q', 'API_ENDPOINT', function($htt
 
 		addNew(){
 			const deferred = $q.defer();
-			const inserturl = `http://${API_ENDPOINT}/incoming`;
+			const inserturl = `http://${API_ENDPOINT}/incomings/incoming`;
 			$http.post(inserturl, this).then((response) => {
-				if (response.data.status == 'OK'){
+				if (response.data.status === 'OK'){
 					response.data.task = 'new';
 					this._id = response.data.data._id;
 					deferred.resolve(response.data);
@@ -54,15 +54,15 @@ sistemaAlertas.factory('Incoming', ['$http', '$q', 'API_ENDPOINT', function($htt
 			if (this._id){
 				return this.update();
 			} else {
-				return this.addNew()
+				return this.addNew();
 			}
 		}
 
 		remove(){
 			const deferred = $q.defer();
-			const inserturl = `http://${API_ENDPOINT}/incoming`;
-			$http.delete(inserturl, {params: {_id: this._id}}).then((response) => {
-				if (response.data.status == 'OK'){
+			const inserturl = `http://${API_ENDPOINT}/incomings/incoming/${this.name}`;
+			$http.delete(inserturl, this).then((response) => {
+				if (response.data.status === 'OK'){
 					deferred.resolve(response.data);
 				} else {
 					deferred.reject(response.data);
@@ -85,7 +85,7 @@ sistemaAlertas.factory('Incoming', ['$http', '$q', 'API_ENDPOINT', function($htt
 			groups.forEach((group) => {
 				this.group.push(group.text);
 			});
-			if (this.group.indexOf('ADMIN') == -1) this.group.push('ADMIN');
+			if (this.group.indexOf('ADMIN') === -1) this.group.push('ADMIN');
 		}
 
 	}
