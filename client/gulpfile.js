@@ -13,7 +13,7 @@ var babel = require('gulp-babel');
 
 
 gulp.task('minify', function(){
-	gulp.src(['app.js', 'class/*.js', 'config/**/*.js', 'login/*.js', 'navigation/*.js', 'notifications/*.js', 'service/**/*.js', '!service/*.development.js'])
+	gulp.src(['app.js', 'class/*.js', 'config/**/*.js', 'login/*.js', 'navigation/*.js', 'notifications/*.js', 'history/*.js', 'service/**/*.js', '!service/*.development.js'])
 		.pipe(concat('app.js'))
 		.pipe(babel({
 			presets: ['es2015']
@@ -62,6 +62,7 @@ gulp.task('copy-files', function(){
 		"config": "config/**/*.html",
 		"navigation": "navigation/*.html",
 		"notifications": "notifications/*.html",
+		"history": "history/*.html",
 		"service/dialogs": "service/dialogs/*.html",
 		"lib": "lib/*",
 		"fonts": "fonts/*",
