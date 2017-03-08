@@ -4,13 +4,16 @@
     <div class="{{ vmHistory.notifications.panelWidth }}">
         <div class="panel panel-primary panel-notification">
             <div class="panel-heading">
-                Historial - {{ system.system }}
+                Historial - {{ system.system }} <span class="pull-right badge">{{ system.historyCount }}</span>
             </div>
             <div class="panel-body {{ vmHistory.notifications.panelHeigth }}" style="overflow: auto" ng-class="system.loadingHistory ? 'vertical-align' : ''">
                 <div class="row col-xs-12" ng-show="system.loadingHistory">
                     <img class="img-responsive center-block" src="images/ajax-loader.gif">
                 </div>
-                <div ng-hide="system.loadingHistory" class="col-xs-12">
+                <div class="col-xs-12" ng-show="!system.loadingHistory && system.history.length == 0">
+                    <h4>No se han encontrado resultados para este grupo de controles. Puede repetir la búsqueda presionando <a href ng-click="system.getHistory()">aquí.</a></h4>
+                </div>
+                <div ng-hide="system.loadingHistory || system.history.length == 0" class="col-xs-12">
                     <table class="table table-responsive table-hover table-bordered">
                         <thead>
                         <tr>
