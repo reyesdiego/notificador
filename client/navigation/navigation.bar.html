@@ -35,9 +35,9 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav navbar-clock hidden-sm hidden-xs"><a href><strong>{{ vmNavigation.timer.clock | date: 'dd/MM/yyyy HH:mm:ss'}}</strong></a></li>
-                <li class="nav"><a href ui-sref="history">Historial</a></li>
+                <li class="nav"><a href ui-sref="history"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;&nbsp;Historial</a></li>
                 <li ng-show="vmNavigation.session.isAdmin" class="nav selectable" uib-dropdown>
-                    <a href ng-hide="dropdown" uib-dropdown-toggle><i class="glyphicon glyphicon-wrench"></i> Configuración</a>
+                    <a href ng-hide="dropdown" uib-dropdown-toggle><i class="glyphicon glyphicon-wrench"></i>&nbsp;Configuración</a>
                     <ul class="dropdown-menu">
                         <li><a ui-sref="config.outgoing" ng-click="vmNavigation.isCollapsed = true">Controles</a></li>
                         <li><a ui-sref="config.incoming" ng-click="vmNavigation.isCollapsed = true">Mensajes</a></li>

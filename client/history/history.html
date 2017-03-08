@@ -2,31 +2,38 @@
 
 <div ng-repeat="system in vmHistory.notifications.watchedSystems track by $index">
     <div class="{{ vmHistory.notifications.panelWidth }}">
-        <div class="panel panel-primary panel-notification {{ vmHistory.notifications.panelHeigth }}">
+        <div class="panel panel-primary panel-notification">
             <div class="panel-heading">
                 Historial - {{ system.system }}
             </div>
-            <div class="panel-body">
-                <table class="table table-responsive table-hover table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Tipo</th>
-                        <th>Fecha</th>
-                        <th>Nombre</th>
-                        <th>Mensaje</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="notification in system.history" ng-class="notification.type">
-                        <td>{{ notification.control }}</td>
-                        <td>{{ notification.date | date: 'dd/MM/yyyy'}}</td>
-                        <td>{{ notification.name }}</td>
-                        <td>{{ notification.message }}</td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div class="panel-body {{ vmHistory.notifications.panelHeigth }}" style="overflow: auto" ng-class="system.loadingHistory ? 'vertical-align' : ''">
+                <div class="row col-xs-12" ng-show="system.loadingHistory">
+                    <img class="img-responsive center-block" src="images/ajax-loader.gif">
+                </div>
+                <div ng-hide="system.loadingHistory" class="col-xs-12">
+                    <table class="table table-responsive table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Fecha</th>
+                            <th>Nombre</th>
+                            <th>Mensaje</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="notification in system.history" ng-class="notification.type">
+                            <td>{{ notification.control }}</td>
+                            <td>{{ notification.date | date: 'dd/MM/yyyy'}}</td>
+                            <td>{{ notification.name }}</td>
+                            <td>{{ notification.message }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-                <uib-pagination></uib-pagination>
+                    <div class="col-lg-12 text-center" ng-if="system.historyCount > system.pagination.itemsPerPage">
+                        <ul uib-pagination class="pagination" ng-change="system.getHistory()" max-size="10" boundary-links="true" ng-model="system.pagination.current" total-items="system.historyCount" items-per-page="system.pagination.itemsPerPage" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

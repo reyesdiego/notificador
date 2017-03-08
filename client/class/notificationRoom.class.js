@@ -10,10 +10,12 @@ sistemaAlertas.factory('NotificationRoom', ['Socket', 'Notification', 'SYSTEMS',
 
 				this.group = system;
 				this.historyData = [];
+				this.historyCount = 0;
 				this.pagination = {
 					current: 1,
 					itemsPerPage: 5
 				};
+				this.loadingHistory = false;
 				dataService.getGroups().then((groups) => {
 					groups.forEach((group) => {
 						if (group._id == system) this.system = group.description;
@@ -102,6 +104,7 @@ sistemaAlertas.factory('NotificationRoom', ['Socket', 'Notification', 'SYSTEMS',
 			}
 
 			getHistory(){
+				this.loadingHistory = true;
 				const page = {
 					skip: (this.pagination.current - 1) * this.pagination.itemsPerPage,
 					limit: this.pagination.itemsPerPage
@@ -113,13 +116,15 @@ sistemaAlertas.factory('NotificationRoom', ['Socket', 'Notification', 'SYSTEMS',
 				$http.get(inserturl, {params: {group: this.group}}).then((response) => {
 					if (response.data.status == 'OK'){
 						this.history = response.data.data;
-						console.log(response.data.data);
+						this.historyCount = response.data.totalCount;
 						deferred.resolve(this.history);
 					} else {
 						deferred.reject(response.data);
 					}
+					this.loadingHistory = false;
 				}).catch((response) => {
 					deferred.reject(response.data);
+					this.loadingHistory = false;
 				});
 				return deferred.promise;
 			}

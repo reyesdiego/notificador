@@ -58,6 +58,11 @@ html, body {
     background-size: cover;
 }*/
 
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
 .vertical-center {
 
     height: 60vh !important; /* You might also want to use
@@ -114,15 +119,13 @@ html, body {
 }
 
 .half-screen {
-    min-height: 44vh;
-    max-height: 44vh;
-    overflow: hidden;
+    min-height: 39vh;
+    max-height: 39vh;
 }
 
 .full-screen {
-    min-height: 90vh;
-    max-height: 90vh;
-    overflow: hidden;
+    min-height: 85vh;
+    max-height: 85vh;
 }
 
 .notification-card {
@@ -347,4 +350,14 @@ li:hover {
     border-left: 0 solid black !important;
     border-right: 0 solid black !important;
     border-bottom: 1px solid black !important;
+}
+
+.pagination li a {
+    background-color: #96aebf;
+    border-color: #79869a;
+}
+
+.pagination li a:hover {
+    background-color: #136285;
+    border-color: #00008b;
 }
