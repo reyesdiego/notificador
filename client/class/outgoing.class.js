@@ -34,16 +34,6 @@ sistemaAlertas.factory('Outgoing', ['$http', '$q', 'API_ENDPOINT', function($htt
 			}
 		}
 
-		enable(){
-			this.status = true;
-			this.update();
-		}
-
-		disable(){
-			this.status = false;
-			this.update();
-		}
-
 		update(){
 			const deferred = $q.defer();
 			const inserturl = `http://${API_ENDPOINT}/outgoings/outgoing/${this.name}/change`;
@@ -100,6 +90,14 @@ sistemaAlertas.factory('Outgoing', ['$http', '$q', 'API_ENDPOINT', function($htt
 			return deferred.promise;
 		}
 
+		get taskStatus(){
+			return this.status;
+		}
+
+		set taskStatus(status){
+			this.status = status;
+			this.update();
+		}
 
 		set schedule(newSchedule){
 			this.cron = {};
