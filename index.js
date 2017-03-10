@@ -18,8 +18,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride());
 
-app.use(express.static(__dirname + '/build'));
+app.use(express.static(__dirname + config.client));
 //app.use(express.static(__dirname + '/Script'));
+
+var pad = path.join(__dirname, '/public');
+
+app.set('views', pad);
+app.set('view engine', 'jade');
 
 
 app.all('/*', (req, res, next) => {
@@ -81,7 +86,6 @@ io.sockets.on('connection', socket => {
 });
 
 require('./routes/router.js')(app, io);
-
 
 server.listen(config.serverPort, () => {
     console.info("#%s Nodejs %s Running on %s://localhost:%s", process.pid, process.version, 'http', config.serverPort);

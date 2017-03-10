@@ -58,34 +58,47 @@ var incoming = (io) => {
                         messages = [];
                     }
                     response.emailSent = false;
-                    promise = new Promise((resolveIncoming, reject) => {
+                    promise = new Promise((resolveIncoming, rejectIncoming) => {
                         if (incoming.mail.status) {
-                            var Mail = require('local-emailjs');
-                            Mail = new Mail(email);
-                            Mail.send(incoming.mail.accounts, incoming.description, JSON.stringify(messages))
-                                .then(data => {
-                                    response.emailSent = true;
+                            res.render('incomingEmail.jade', {messages: messages, description: incoming.description}, (err, html) => {
+                                if (err) {
+                                    console.log('no manda mail %s ', err);
                                     resolveIncoming({
                                         incomingId: incoming._id,
                                         date: new Date(),
-                                        email: incoming.mail.accounts,
-                                        message: messages
-                                    });
-                                    console.log("MAIL %s a %s", incoming.name, incoming.mail.accounts);
-                                })
-                                .catch(err => {
-                                    resolveIncoming({
-                                        incomingId: incoming._id,
-                                        date: new Date(),
-                                        message: messages
-                                    });
-                                    console.error(err);
-                                });
+                                        message: messages});
+                                } else {
+                                    html = {
+                                        data : html,
+                                        alternative: true
+                                    };
+                                    var Mail = require('../include/micro-emailjs.js');
+                                    Mail.send(incoming.mail.accounts, incoming.description, html)
+                                        .then(data => {
+                                            response.emailSent = true;
+                                            resolveIncoming({
+                                                incomingId: incoming._id,
+                                                date: new Date(),
+                                                email: incoming.mail.accounts,
+                                                message: messages
+                                            });
+                                            console.log("MAIL %s a %s", incoming.name, incoming.mail.accounts);
+                                        })
+                                        .catch(err => {
+                                            resolveIncoming({
+                                                incomingId: incoming._id,
+                                                date: new Date(),
+                                                message: messages
+                                            });
+                                            console.error(err);
+                                        });
+                                }
+                            });
                         } else {
                             resolveIncoming({
                                 incomingId: incoming._id,
                                 date: new Date(),
-                                messages: messages});
+                                message: messages});
                         }
                     });
 
