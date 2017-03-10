@@ -1,16 +1,6 @@
 {
     "serverPort": 8073,
-    "email": {
-        "user":    "",
-        "password": "",
-        "host":    "10.10.0.176",
-        "port": "25",
-        "domain": "",
-        "from": "Administración General de Puertos <noreply@puertobuenosaires.gob.ar>",
-        "ssl":     false,
-        "status": true,
-        "throughBcc": true
-    },
+    "client": "/client",
     "log": {
         "path": "log/",
         "filename": "nohup.out",
@@ -25,5 +15,12 @@
         "user": "admin",
         "pass": "Pt trend 54",
         "auth": {"authdb": "admin"}
+    },
+    "microService": {
+        "email": {
+            "port": 10001,
+            "host": "10.1.0.65"
+        }
     }
+
 }
