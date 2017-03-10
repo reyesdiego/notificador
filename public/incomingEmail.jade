@@ -1,0 +1,18 @@
+doctype html
+html(lang='es')
+    head
+        title Notificaciones
+    body(style="font-family: 'Open Sans',sans-serif; font-size: 12px")
+    h1(style="font-family: inherit; font-weight: 400; font-size: 30px; line-height: 1.1; color: #0099d7;") #{description}
+    table
+        tr(style="font-weight:bolder")
+            td Fecha
+            td Descripción
+            - each val1, index1 in messages
+                tr
+                    td #{val1.date}
+                    td #{val1.description}
+    p
+    p
+        img(style="height:60px" src="http://pagoelectronico.puertobuenosaires.gob.ar/images/logoPuerto.png")
+        p(style="text-align: left") Notidicaciones Administración General de Puerto.

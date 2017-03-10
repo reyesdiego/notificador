@@ -90,8 +90,7 @@ let isAliveJob = (jobOptions, io) => {
 
             if (scheduledJob.triggeredJobs() <= jobOptions.mail.count) {
                 if (jobOptions.mail.status) {
-                    var Mail = require('local-emailjs');
-                    Mail = new Mail(email);
+                    var Mail = require('../include/micro-emailjs.js');
                     Mail.send(jobOptions.mail.accounts, jobOptions.name, JSON.stringify(err))
                         .then(data => {
                             messages.forEach(item => {
