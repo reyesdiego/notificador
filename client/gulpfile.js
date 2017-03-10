@@ -2,14 +2,14 @@
  * Created by kolesnikov-a on 09/02/2017.
  */
 
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var concatCss = require('gulp-concat-css');
-var cleanCss = require('gulp-clean-css');
-var duration = require('gulp-duration');
-var htmlreplace = require('gulp-html-replace');
-var minify = require('gulp-minify');
-var babel = require('gulp-babel');
+const gulp = require('gulp');
+const concat = require('gulp-concat');
+const concatCss = require('gulp-concat-css');
+const cleanCss = require('gulp-clean-css');
+const duration = require('gulp-duration');
+const htmlreplace = require('gulp-html-replace');
+const minify = require('gulp-minify');
+const babel = require('gulp-babel');
 
 
 gulp.task('minify', function(){
@@ -57,7 +57,7 @@ gulp.task('html-replace', function() {
 });
 
 gulp.task('copy-files', function(){
-	var templates = {
+	const templates = {
 		"login": "login/login.html",
 		"config": "config/**/*.html",
 		"navigation": "navigation/*.html",
@@ -70,20 +70,19 @@ gulp.task('copy-files', function(){
 		"audio": "audio/*",
 		"images": "images/*"
 	};
-	for (var template in templates) {
-		console.log(template);
+	for (let template in templates) {
 		gulp.src(templates[template])
 			.pipe(gulp.dest("../build/" + template))
 	}
 });
 
 gulp.task("copy-bower-dependencies", function () {
-	var paths = {
+	const paths = {
 		bower: "bower_components/",
 		lib: "../build/lib/"
 	};
 
-	var bower = {
+	const bower = {
 		"angular": "angular/*.min*",
 		"angular-animate": 'angular-animate/*.min*',
 		"angular-bootstrap": 'angular-bootstrap/{*-tpls.min*,uib/**}',
@@ -93,8 +92,7 @@ gulp.task("copy-bower-dependencies", function () {
 		"ng-tags-input": 'ng-tags-input/*.min.js'
 	};
 
-	for (var destinationDir in bower) {
-		console.log(destinationDir);
+	for (let destinationDir in bower) {
 		gulp.src(paths.bower + bower[destinationDir])
 			.pipe(gulp.dest(paths.lib + destinationDir));
 	}
