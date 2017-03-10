@@ -37,13 +37,14 @@ sistemaAlertas.factory('Notification', [function(){
 		}
 
 		get notificationStyle(){
-			if (this.type == 'ERROR'){
+			if (this.status == 'ERROR' || this.type == 'ERROR'){
 				return 'notification-alert';
 			} else if(this.type == 'WARN'){
 				return 'notification-warning';
 			} else {
 				return 'notification-info';
 			}
+
 		}
 
 		get notificationSound(){
