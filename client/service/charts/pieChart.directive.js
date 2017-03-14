@@ -20,18 +20,20 @@ sistemaAlertas.directive('pieChart', ['chartLoader', function(chartLoader){
 				scope.selectFn = () => {
 					selectedItem = chartCtrl.chart.getSelection();
 
-					const rowNumber = parseInt(selectedItem[0].row);
-
 					if(selectedSlice != -1){    // If we have a selection, unexplode it
 						scope.options.slices[selectedSlice] = {offset:'0'};
-					}
-					if(selectedSlice == rowNumber){ // If this is already selected, unselect it
 						selectedSlice = -1;
-					} else {  // else explode it
+					}
+
+					if (selectedItem[0]){
+						const rowNumber = parseInt(selectedItem[0].row);
+
 						scope.options.slices[rowNumber] = {offset:'.2'};
 						selectedSlice = rowNumber;
 						//selectItem = true;
+
 					}
+
 
 					chartCtrl.drawChart(scope.data, scope.options);
 
