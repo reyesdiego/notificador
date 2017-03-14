@@ -1,7 +1,7 @@
 /**
  * Created by kolesnikov-a on 11/11/2016.
  */
-var sistemaAlertas = angular.module('sistemaAlertas', [
+let sistemaAlertas = angular.module('sistemaAlertas', [
 	'ui.router',
 	'ui.bootstrap',
 	'btford.socket-io',
@@ -16,7 +16,7 @@ sistemaAlertas.constant('SYSTEMS', {
 	ALIVE: 'Chequeo Plataformas Online'
 });
 
-sistemaAlertas.config(['$urlRouterProvider', '$stateProvider',  function($urlRouterProvider, $stateProvider){
+sistemaAlertas.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider){
 	$urlRouterProvider.otherwise('/login');
 
 	$stateProvider.state('login', {
@@ -48,6 +48,11 @@ sistemaAlertas.config(['$urlRouterProvider', '$stateProvider',  function($urlRou
 		templateUrl: 'history/history.html',
 		controller: 'historyCtrl as vmHistory',
 		requireAuth: true
+	}).state('reports', {
+		url: '/reports',
+		templateUrl: 'reports/reports.html',
+		controller: 'reportsCtrl as vmReports',
+		requiereAuth: true
 	})
 
 }]);

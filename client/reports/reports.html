@@ -1,0 +1,17 @@
+<div class="row col-lg-12 page-header">
+    <h1>Configuración de tareas</h1>
+</div>
+
+<div class="col-lg-12 col-xs-12">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Probando gráficos</div>
+        <div class="panel-body">
+            <div class="col-lg-6">
+                <pie-chart data="vmReports.data" options="vmReports.options" click="vmReports.selectFunc(selectedRow)"></pie-chart>
+            </div>
+            <div class="col-lg-6">
+                <column-chart data="vmReports.data" options="vmReports.options" click="vmReports.selectFunc(selectedRow)"></column-chart>
+            </div>
+        </div>
+    </div>
+</div>
