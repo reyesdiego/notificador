@@ -42,7 +42,7 @@ let isAliveJob = (jobOptions, io) => {
                     fecha: scheduledFiredTime,
                     name: jobOptions.name,
                     type: jobOptions.type,
-                    description: "No se a podido conectar con el recurso",
+                    description: "No se ha podido conectar con el recurso",
                     message: "",
                     data: JSON.stringify(err),
                     nextInvocation: moment(scheduledJob.nextInvocation()).format('DD-MM-YYYY HH:mm:ss')
