@@ -281,16 +281,20 @@ html, body {
         float:none;
         line-height:50px;
     }
+}
 
-    .nav-center a {
-        height: 100%;
-        cursor: default;
-        line-height:50px;
-    }
+.nav-center a {
+    height: 100%;
+    cursor: default;
+    line-height:50px;
+}
 
-    .nav-center a:hover {
-        background-color: #136285 !important;
-    }
+.nav-center a:hover {
+    background-color: #136285 !important;
+}
+
+.navbar-clock a:hover {
+    background-color: #136285 !important;
 }
 
 @media (max-width: 767px) {
