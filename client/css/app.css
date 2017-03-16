@@ -260,7 +260,7 @@ html, body {
 
 
 /*  Some overwritings to bootstrap's */
-@media (min-width:768px) { /* don't break navbar on small screen */
+@media (min-width:767px) { /* don't break navbar on small screen */
     .navbar-right {
         text-align: right !important;
     }
@@ -269,15 +269,40 @@ html, body {
         cursor: default;
     }
 
-    .navbar-center {
-        width: 100%;
-        text-align: center;
+    .nav.nav-center {
+        display: inline-block;
+        left: 0;
+        right: 0;
+        text-align:center;
+        width: 50%
+    }
+    .nav.nav-center li,.nav.nav-center li  a{
+        display:inline;
+        float:none;
+        line-height:50px;
     }
 
-    .navbar-center a {
+    .nav-center a {
+        height: 100%;
         cursor: default;
+        line-height:50px;
+    }
+
+    .nav-center a:hover {
+        background-color: #136285 !important;
     }
 }
+
+@media (max-width: 767px) {
+    .nav.nav-center {
+        display: inline-block;
+        left: 0;
+        right: 0;
+        text-align:center;
+        width: 30%
+    }
+}
+
 
 .navbar {
     border-width: 0;
