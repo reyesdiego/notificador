@@ -26,7 +26,6 @@ var incoming = (io) => {
     };
 
     let sendIncoming = (req, res) => {
-        var email = config.email;
         var promise;
 
         var Incoming = require('../lib/incoming.js');
@@ -147,7 +146,7 @@ var incoming = (io) => {
 
     let change = (req, res) => {
         var incoming = req.body;
-        Incoming.change(req.params.routeName)
+        Incoming.change(incoming)
             .then(data => {
                 res.status(200).send(data);
             })
